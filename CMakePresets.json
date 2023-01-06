@@ -1,0 +1,77 @@
+{
+    "version": 4,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 23,
+        "patch": 0
+    },
+
+    "configurePresets": [
+        {
+            "name": "common",
+            "cacheVariables": {
+                "BUILD_CONFIG": "debug",
+                "WARNING_CONFIG": "all",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "on",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}"
+            }
+        },
+        {
+            "name": "debug-linux",
+            "displayName": "Default Debug Config - Linux",
+            "description": "Default debug build configuration for Linux based systems, using ninja generator.",
+            "generator": "Ninja",
+            "inherits": "common",
+            "binaryDir": "${sourceDir}/build/default-dbg-linux",
+            "cacheVariables": {
+                "ENABLE_STATIC_TESTS": "on"
+            }
+        },
+        {
+            "name": "release-linux",
+            "displayName": "Default Release Config - Linux",
+            "description": "Default release build configuration for Linux based systems, using ninja generator.",
+            "generator": "Ninja",
+            "inherits": "common",
+            "binaryDir": "${sourceDir}/build/default-rel-linux"
+        }
+    ],
+
+    "buildPresets": [
+        {
+            "name": "debug-linux",
+            "displayName": "Default Debug Build - Linux",
+            "configuration": "Debug",
+            "inheritConfigureEnvironment": true,
+            "configurePreset": "debug-linux",
+            "jobs": 14
+        },
+        {
+            "name": "release-linux",
+            "displayName": "Default Release Build - Linux",
+            "configuration": "Release",
+            "inheritConfigureEnvironment": true,
+            "configurePreset": "release-linux",
+            "jobs": 14
+        }
+    ],
+
+    "testPresets": [
+        {
+            "name": "debug-linux",
+            "configurePreset": "debug-linux",
+            "output": { "outputOnFailure": true },
+            "inheritConfigureEnvironment": true,
+            "execution": { "noTestsAction": "error", "stopOnFailure": true, "jobs": 14 }
+        },
+        {
+            "name": "release-linux",
+            "configurePreset": "release-linux",
+            "output": { "outputOnFailure": true },
+            "inheritConfigureEnvironment": true,
+            "execution": { "noTestsAction": "error", "stopOnFailure": true, "jobs": 14 }
+        }
+    ]
+}
