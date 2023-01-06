@@ -62,8 +62,6 @@ include_directories(
 
 # Build Targets
 set(SRC_SLOTHSHTOOLKIT)
-add_executable(helloworld ${SRC_SLOTHSHTOOLKIT})
-target_link_libraries(helloworld PRIVATE fmt::fmt magic_enum::magic_enum)
 
 # Create Compile Commands Symlink for clangd
 message(STATUS "Creating compile_commands.json symlink to ${CMAKE_BINARY_DIR}/compile_commands.json")
