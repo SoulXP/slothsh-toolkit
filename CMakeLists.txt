@@ -61,7 +61,7 @@ include_directories(
 )
 
 # Build Targets
-set(SRC_SLOTHSHTOOLKIT ./main.cpp)
+set(SRC_SLOTHSHTOOLKIT)
 add_executable(helloworld ${SRC_SLOTHSHTOOLKIT})
 target_link_libraries(helloworld PRIVATE fmt::fmt magic_enum::magic_enum)
 
