@@ -5,7 +5,7 @@
         "catch2",
         {
             "name": "magic-enum",
-            "platform": "x64 & static"
+            "platform": "static"
         }
     ]
 }

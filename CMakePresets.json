@@ -10,12 +10,27 @@
         {
             "name": "common",
             "cacheVariables": {
-                "BUILD_CONFIG": "debug",
-                "WARNING_CONFIG": "all",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "on",
                 "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}"
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}",
+                "SLOTHSH_TOOLKIT_DEV": "on",
+                "IS_TOPLEVEL_PROJECT": "on"
+            }
+        },
+        {
+            "name": "common-debug",
+            "inherits": "common",
+            "cacheVariables": {
+                "BUILD_CONFIG": "debug",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+                {
+            "name": "common-release",
+            "inherits": "common",
+            "cacheVariables": {
+                "BUILD_CONFIG": "release",
+                "CMAKE_BUILD_TYPE": "Release"
             }
         },
         {
@@ -23,7 +38,7 @@
             "displayName": "Default Debug Config - Linux",
             "description": "Default debug build configuration for Linux based systems, using ninja generator.",
             "generator": "Ninja",
-            "inherits": "common",
+            "inherits": "common-debug",
             "binaryDir": "${sourceDir}/build/default-dbg-linux",
             "cacheVariables": {
                 "ENABLE_STATIC_TESTS": "on"
@@ -34,7 +49,7 @@
             "displayName": "Default Release Config - Linux",
             "description": "Default release build configuration for Linux based systems, using ninja generator.",
             "generator": "Ninja",
-            "inherits": "common",
+            "inherits": "common-release",
             "binaryDir": "${sourceDir}/build/default-rel-linux"
         }
     ],
