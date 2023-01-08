@@ -77,7 +77,9 @@ else()
 endif()
 
 # Build Third-Party Dependencies via vcpkg
-find_package(magic_enum CONFIG REQUIRED)
+if(${IS_TOPLEVEL_PROJECT})
+    find_package(magic_enum CONFIG REQUIRED)
+endif()
 
 # Build Targets
 add_library(slothshtoolkit INTERFACE)
@@ -124,7 +126,7 @@ if(SLOTHSH_TOOLKIT_OPT_INSTALLL)
     install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
             "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
             DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
-    
+
     # Install Project Header Files
     install(DIRECTORY ${PROJECT_SOURCE_DIR}/include DESTINATION .)
 
