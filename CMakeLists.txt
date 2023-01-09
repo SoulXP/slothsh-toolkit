@@ -77,14 +77,18 @@ else()
 endif()
 
 # Build Third-Party Dependencies via vcpkg
+include(CMakeFindDependencyMacro)
 find_package(magic_enum CONFIG REQUIRED)
+find_path(magic_enum_include REQUIRED NAMES magic_enum.hpp)
+message(STATUS "install include directory: ${CMAKE_INSTALL_INCLUDEDIR}")
 
 # Build Targets
 add_library(slothshtoolkit INTERFACE)
 target_include_directories(slothshtoolkit INTERFACE
                            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-                           $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-target_link_libraries(slothshtoolkit INTERFACE magic_enum::magic_enum)
+                           $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+                           $<BUILD_INTERFACE:${magic_enum_include}>
+                           $<INSTALL_INTERFACE:${magic_enum_include}>)
 
 # Create Compile Flags Symlink for clangd
 if (${IS_TOPLEVEL_PROJECT})
@@ -128,18 +132,4 @@ if(SLOTHSH_TOOLKIT_OPT_INSTALLL)
 
     # Install Project Header Files
     install(DIRECTORY ${PROJECT_SOURCE_DIR}/include DESTINATION .)
-
-    # Install Project Local magic_enum Headers
-    # set(MAGIC_ENUM_INSTALL_DIR ./include/slsh/magic_enum)
-    # set(MAGIC_ENUM_LICENSE ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/share/magic-enum/copyright)
-    # set(MAGIC_ENUM_FILES
-    #     ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/include/magic_enum.hpp
-    #     ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/include/magic_enum_format.hpp
-    #     ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/include/magic_enum_fuse.hpp) 
-    #
-    # install(FILES ${MAGIC_ENUM_LICENSE}
-    #         RENAME "LICENSE"
-    #         DESTINATION ${MAGIC_ENUM_INSTALL_DIR})
-    # install(FILES ${MAGIC_ENUM_FILES}
-    #         DESTINATION ${MAGIC_ENUM_INSTALL_DIR})
 endif()
