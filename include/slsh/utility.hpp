@@ -17,7 +17,7 @@
 #include <utility>
 
 // Third-party library
-#include "magic_enum.hpp"
+#include <magic_enum.hpp>
 
 // Project library
 #include "traits.hpp"
