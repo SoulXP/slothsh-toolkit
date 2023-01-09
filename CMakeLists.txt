@@ -81,7 +81,9 @@ find_package(magic_enum CONFIG REQUIRED)
 
 # Build Targets
 add_library(slothshtoolkit INTERFACE)
-target_include_directories(slothshtoolkit INTERFACE include)
+target_include_directories(slothshtoolkit INTERFACE
+                           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                           $<INSTALL_INTERFACE:include>)
 
 # Create Compile Flags Symlink for clangd
 if (${IS_TOPLEVEL_PROJECT})
