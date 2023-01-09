@@ -96,7 +96,7 @@ if(SLOTHSH_TOOLKIT_OPT_INSTALLL)
     include(GNUInstallDirs)
 
     # Generate Cmake Targets
-    install(TARGETS slothshtoolkit
+    install(TARGETS ${PROJECT_NAME}
             EXPORT ${PROJECT_NAME}_Targets
             ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
             LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -124,6 +124,9 @@ if(SLOTHSH_TOOLKIT_OPT_INSTALLL)
     install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
             "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
             DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+
+    export(EXPORT ${PROJECT_NAME}_Targets
+           NAMESPACE ${PROJECT_NAME}::)
 
     # Install Project Header Files
     install(DIRECTORY ${PROJECT_SOURCE_DIR}/include DESTINATION .)
