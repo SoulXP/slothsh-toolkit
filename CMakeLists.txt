@@ -129,16 +129,16 @@ if(SLOTHSH_TOOLKIT_OPT_INSTALLL)
     install(DIRECTORY ${PROJECT_SOURCE_DIR}/include DESTINATION .)
 
     # Install Project Local magic_enum Headers
-    set(MAGIC_ENUM_INSTALL_DIR ./include/slsh/magic_enum)
-    set(MAGIC_ENUM_LICENSE ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/share/magic-enum/copyright)
-    set(MAGIC_ENUM_FILES
-        ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/include/magic_enum.hpp
-        ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/include/magic_enum_format.hpp
-        ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/include/magic_enum_fuse.hpp) 
-
-    install(FILES ${MAGIC_ENUM_LICENSE}
-            RENAME "LICENSE"
-            DESTINATION ${MAGIC_ENUM_INSTALL_DIR})
-    install(FILES ${MAGIC_ENUM_FILES}
-            DESTINATION ${MAGIC_ENUM_INSTALL_DIR})
+    # set(MAGIC_ENUM_INSTALL_DIR ./include/slsh/magic_enum)
+    # set(MAGIC_ENUM_LICENSE ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/share/magic-enum/copyright)
+    # set(MAGIC_ENUM_FILES
+    #     ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/include/magic_enum.hpp
+    #     ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/include/magic_enum_format.hpp
+    #     ${CMAKE_BINARY_DIR}/vcpkg_installed/${MAGIC_ENUM_VCPKG_TRIPLET}/include/magic_enum_fuse.hpp) 
+    #
+    # install(FILES ${MAGIC_ENUM_LICENSE}
+    #         RENAME "LICENSE"
+    #         DESTINATION ${MAGIC_ENUM_INSTALL_DIR})
+    # install(FILES ${MAGIC_ENUM_FILES}
+    #         DESTINATION ${MAGIC_ENUM_INSTALL_DIR})
 endif()

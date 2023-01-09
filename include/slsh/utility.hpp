@@ -17,11 +17,7 @@
 #include <utility>
 
 // Third-party library
-#if defined(SLOTHSH_TOOLKIT_DEV)
-#   include "magic_enum.hpp"
-#else
-#   include "slsh/magic_enum/magic_enum.hpp"
-#endif
+#include "magic_enum.hpp"
 
 // Project library
 #include "traits.hpp"

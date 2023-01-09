@@ -13,7 +13,6 @@
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "on",
                 "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}",
-                "SLOTHSH_TOOLKIT_DEV": "on",
                 "IS_TOPLEVEL_PROJECT": "on"
             }
         },
