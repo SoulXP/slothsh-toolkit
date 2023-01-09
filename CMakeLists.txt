@@ -81,6 +81,7 @@ find_package(magic_enum CONFIG REQUIRED)
 
 # Build Targets
 add_library(slothshtoolkit INTERFACE)
+target_include_directories(slothshtoolkit INTERFACE include)
 
 # Create Compile Flags Symlink for clangd
 if (${IS_TOPLEVEL_PROJECT})
@@ -97,7 +98,7 @@ if(SLOTHSH_TOOLKIT_OPT_INSTALLL)
 
     # Generate Cmake Targets
     install(TARGETS ${PROJECT_NAME}
-            EXPORT ${PROJECT_NAME}_Targets
+            EXPORT ${PROJECT_NAME}Config
             ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
             LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
             RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
@@ -114,18 +115,12 @@ if(SLOTHSH_TOOLKIT_OPT_INSTALLL)
         INSTALL_DESTINATION
         ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
     
-    # Install Export Targets
-    install(EXPORT ${PROJECT_NAME}_Targets
-            FILE ${PROJECT_NAME}Targets.cmake
-            NAMESPACE ${PROJECT_NAME}::
-            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
-    
     # Install Cmake Config & Version Info
     install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
             "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
             DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
 
-    export(EXPORT ${PROJECT_NAME}_Targets
+    export(EXPORT ${PROJECT_NAME}Config
            NAMESPACE ${PROJECT_NAME}::)
 
     # Install Project Header Files
