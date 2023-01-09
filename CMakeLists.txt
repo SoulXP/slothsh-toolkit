@@ -77,9 +77,7 @@ else()
 endif()
 
 # Build Third-Party Dependencies via vcpkg
-if(${IS_TOPLEVEL_PROJECT})
-    find_package(magic_enum CONFIG REQUIRED)
-endif()
+find_package(magic_enum CONFIG REQUIRED)
 
 # Build Targets
 add_library(slothshtoolkit INTERFACE)
