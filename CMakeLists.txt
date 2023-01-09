@@ -112,18 +112,18 @@ if(SLOTHSH_TOOLKIT_OPT_INSTALLL)
         "${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in"
         "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
         INSTALL_DESTINATION
-        ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+        ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
     
     # Install Export Targets
     install(EXPORT ${PROJECT_NAME}_Targets
             FILE ${PROJECT_NAME}Targets.cmake
             NAMESPACE ${PROJECT_NAME}::
-            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
     
     # Install Cmake Config & Version Info
     install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
             "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
-            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
 
     export(EXPORT ${PROJECT_NAME}_Targets
            NAMESPACE ${PROJECT_NAME}::)
